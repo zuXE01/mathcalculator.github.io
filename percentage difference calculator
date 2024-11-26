@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Percentage Difference Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input type="number" id="value1" placeholder="Enter first value">
+  <input type="number" id="value2" placeholder="Enter second value">
+  <button onclick="calculatePercentageDifference()">Calculate Percentage Difference</button>
+  <p id="result"></p>
+
+  <script>
+    function calculatePercentageDifference() {
+      const value1 = parseFloat(document.getElementById("value1").value);
+      const value2 = parseFloat(document.getElementById("value2").value);
+
+      if (value1 <= 0 || value2 <= 0) {
+        alert("Please enter positive values for both numbers.");
+        return;
+      }
+
+      const difference = Math.abs(value1 - value2);
+      const average = (value1 + value2) / 2;
+      const percentageDifference = (difference / average) * 100;
+
+      document.getElementById("result").textContent = `The percentage difference is: ${percentageDifference.toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
