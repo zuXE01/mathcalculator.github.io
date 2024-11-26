@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page title</title>
+  <style>
+body {
+  font-family: sans-serif;
+}
+#calculator, #container, #calculator1, #calculator2 {
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+#result {
+  margin-top: 10px;
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+
+
+<a href="index.html" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-family: sans-serif;">Home</a>
+
+
+
+
+<!-- cubic equation calculator-->
+<div id="calculator">
+  <h2>cubic equation calculator</h2>
+  <p>
+    A cubic equation is a polynomial equation of degree 3. It has the general form: </p>
+
+    <p>
+
+𝑎
+𝑥
+3
++
+𝑏
+𝑥
+2
++
+𝑐
+𝑥
++
+𝑑
+=
+0
+ax 
+3
+ +bx 
+2
+ +cx+d=0
+  </p>
+  
+      <label for="a">a (x³ coefficient):</label>
+      <input type="number" id="a" placeholder="Enter value for a" required>
+  
+      <label for="b">b (x² coefficient):</label>
+      <input type="number" id="b" placeholder="Enter value for b" required>
+  
+      <label for="c">c (x coefficient):</label>
+      <input type="number" id="c" placeholder="Enter value for c" required>
+  
+      <label for="d">d (constant):</label>
+      <input type="number" id="d" placeholder="Enter value for d" required>
+  
+      <button onclick="solveCubic()">Solve Equation</button>
+  
+      <div class="results" id="results"></div>
+    </div>
+  
+    <script>
+      function solveCubic() {
+        // Get the values of the coefficients
+        const a = parseFloat(document.getElementById('a').value);
+        const b = parseFloat(document.getElementById('b').value);
+        const c = parseFloat(document.getElementById('c').value);
+        const d = parseFloat(document.getElementById('d').value);
+        
+        // Check if inputs are valid numbers
+        if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+          document.getElementById('results').innerHTML = "Please enter valid numbers for all coefficients.";
+          return;
+        }
+  
+        // Calculate discriminant and roots
+        const roots = cubicRoots(a, b, c, d);
+  
+        // Display the results
+        let resultText = "The roots of the cubic equation are:<br>";
+        roots.forEach((root, index) => {
+          resultText += `Root ${index + 1}: ${root}<br>`;
+        });
+  
+        document.getElementById('results').innerHTML = resultText;
+      }
+  
+      function cubicRoots(a, b, c, d) {
+        // Calculate the discriminant
+        const delta0 = b * b - 3 * a * c;
+        const delta1 = 2 * b * b * b - 9 * a * b * c + 27 * a * a * d;
+  
+        const discriminant = delta1 * delta1 - 4 * delta0 * delta0 * delta0;
+  
+        // Cubic equation roots
+        let roots = [];
+        if (discriminant >= 0) {
+          const C = Math.cbrt((delta1 + Math.sqrt(discriminant)) / 2);
+          for (let k = 0; k < 3; k++) {
+            const realPart = -1 / (3 * a) * (b + Math.pow(-1, k) * C + delta0 / (Math.pow(-1, k) * C));
+            const complexPart = Math.sqrt(3) / (3 * a) * Math.pow(-1, k) * (C - delta0 / C);
+            roots.push(realPart + " + " + complexPart + "i");
+          }
+        } else {
+          const C = Math.cbrt((delta1 + Math.sqrt(discriminant)) / 2);
+          for (let k = 0; k < 3; k++) {
+            const realPart = -1 / (3 * a) * (b + Math.pow(-1, k) * C + delta0 / (Math.pow(-1, k) * C));
+            roots.push(realPart);
+          }
+        }
+        return roots;
+      }
+    </script>
+    
+  </body>
+
+<!-- square root calculator -->
+<div id="container">
+  <h2>square root calculator</h2>
+  <h1>X²</h1>
+  <p>
+    The square root of a number is a value that, when multiplied by itself, gives the original number. </p>  <p> For example: </p>
+
+    4
+    =
+    2
+    because 
+    2
+    ×
+    2
+    =
+    4
+    4
+    ​
+     =2because 2×2=4
+  </p>
+  <body>
+
+      <input type="number" id="number" placeholder="Enter a number" min="0">
+      <button onclick="calculateSquareRoot()">Calculate</button>
+      <div class="result" id="result"></div>
+    </div>
+  
+    <script>
+      function calculateSquareRoot() {
+        // Get the input value
+        const num = parseFloat(document.getElementById('number').value);
+        
+        // Get the result element
+        const resultElement = document.getElementById('result');
+  
+        // Clear previous results or errors
+        resultElement.textContent = "";
+  
+        // Validate input
+        if (isNaN(num) || num < 0) {
+          resultElement.innerHTML = '<span class="error">Please enter a valid non-negative number.</span>';
+          return;
+        }
+  
+        // Calculate square root
+        const sqrtValue = Math.sqrt(num);
+  
+        // Display the result
+        resultElement.innerHTML = `The square root of ${num} is <strong>${sqrtValue.toFixed(2)}</strong>`;
+      }
+    </script>
+
+<!-- exponent calculator -->
+<div id="calculator1">
+  <h2>exponent calculator</h2>
+  <p>
+    An exponent refers to the power to which a number (called the base) is raised. It indicates how many times the base is multiplied by itself. Exponents are written as superscripts.
+</p>
+    For example:
+    <p>
+    2
+    3
+    =
+    2
+    ×
+    2
+    ×
+    2
+    =
+    8
+    2 
+    3
+     =2×2×2=8
+  </p>
+  <h1>Exponent Calculator</h1>
+  <label for="base">Base:</label>
+  <input type="number" id="base" placeholder="Enter the base" required>
+  
+  <label for="exponent">Exponent:</label>
+  <input type="number" id="exponent" placeholder="Enter the exponent" required>
+  
+  <button onclick="calculateExponent()">Calculate</button>
+  
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  function calculateExponent() {
+    // Get input values
+    const base = parseFloat(document.getElementById('base').value);
+    const exponent = parseFloat(document.getElementById('exponent').value);
+
+    // Get result element
+    const resultElement = document.getElementById('result');
+
+    // Clear previous result or errors
+    resultElement.textContent = "";
+
+    // Validate inputs
+    if (isNaN(base) || isNaN(exponent)) {
+      resultElement.innerHTML = '<span class="error">Please enter valid numbers for base and exponent.</span>';
+      return;
+    }
+
+    // Calculate the result
+    const result = Math.pow(base, exponent);
+
+    // Display the result
+    resultElement.innerHTML = `${base}<sup>${exponent}</sup> = <strong>${result.toFixed(4)}</strong>`;
+  }
+</script>
+
+</body>
+
+<!-- adding and subtracting calculator -->
+<div id="calculator2">
+  <h2>Adding and subtracting calculator</h2>
+  <p>
+    Adding and subtracting are basic arithmetic operations used to combine or compare quantities. Here's an overview of both
+  </p>
+  
+ <!-- Fraction 1 -->
+ <label for="num1">Numerator (Fraction 1):</label>
+ <input type="number" id="num1" placeholder="Enter numerator of first fraction">
+ <label for="den1">Denominator (Fraction 1):</label>
+ <input type="number" id="den1" placeholder="Enter denominator of first fraction">
+
+ <!-- Fraction 2 -->
+ <label for="num2">Numerator (Fraction 2):</label>
+ <input type="number" id="num2" placeholder="Enter numerator of second fraction">
+ <label for="den2">Denominator (Fraction 2):</label>
+ <input type="number" id="den2" placeholder="Enter denominator of second fraction">
+
+ <!-- Operation -->
+ <label for="operation">Operation:</label>
+ <select id="operation">
+   <option value="add">Add</option>
+   <option value="subtract">Subtract</option>
+ </select>
+
+ <!-- Button -->
+ <button onclick="calculateFractions()">Calculate</button>
+
+ <!-- Result -->
+ <div class="result" id="result"></div>
+</div>
+
+<script>
+ function calculateFractions() {
+   // Get inputs
+   const num1 = parseInt(document.getElementById('num1').value);
+   const den1 = parseInt(document.getElementById('den1').value);
+   const num2 = parseInt(document.getElementById('num2').value);
+   const den2 = parseInt(document.getElementById('den2').value);
+   const operation = document.getElementById('operation').value;
+
+   // Get result element
+   const resultElement = document.getElementById('result');
+
+   // Validate inputs
+   if (isNaN(num1) || isNaN(den1) || isNaN(num2) || isNaN(den2) || den1 === 0 || den2 === 0) {
+     resultElement.innerHTML = '<span class="error">Please enter valid numbers and ensure denominators are not zero.</span>';
+     return;
+   }
+
+   // Calculate common denominator
+   const commonDenominator = den1 * den2;
+   let resultNumerator;
+
+   if (operation === "add") {
+     resultNumerator = num1 * den2 + num2 * den1;
+   } else if (operation === "subtract") {
+     resultNumerator = num1 * den2 - num2 * den1;
+   }
+
+   // Simplify the result
+   const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b)); // Greatest Common Divisor
+   const divisor = gcd(resultNumerator, commonDenominator);
+   const simplifiedNumerator = resultNumerator / divisor;
+   const simplifiedDenominator = commonDenominator / divisor;
+
+   // Display the result
+   resultElement.innerHTML = `Result: ${simplifiedNumerator}/${simplifiedDenominator}`;
+ }
+</script>
+
+</body>
+
+</html>
+ 
