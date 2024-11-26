@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mixed Number Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mixed Number Calculator</h2>
+  <p>Enter the first mixed number:</p>
+  <input type="number" id="whole1" placeholder="Whole number">
+  <input type="number" id="numerator1" placeholder="Numerator">
+  <input type="number" id="denominator1" placeholder="Denominator">
+  <p>Enter the second mixed number:</p>
+  <input type="number" id="whole2" placeholder="Whole number">
+  <input type="number" id="numerator2" placeholder="Numerator">
+  <input type="number" id="denominator2" placeholder="Denominator">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      const whole1 = parseInt(document.getElementById("whole1").value);
+      const numerator1 = parseInt(document.getElementById("numerator1").value);
+      const denominator1 = parseInt(document.getElementById("denominator1").value);
+      const whole2 = parseInt(document.getElementById("whole2").value);
+      const numerator2 = parseInt(document.getElementById("numerator2").value);
+      const denominator2 = parseInt(document.getElementById("denominator2").value);
+
+      // Convert mixed numbers to improper fractions
+      const num1 = whole1 * denominator1 + numerator1;
+      const num2 = whole2 * denominator2 + numerator2;
+
+      // Calculate the desired operation (e.g., addition, subtraction, multiplication, division)
+      // Here, we'll demonstrate addition:
+      const sumNumerator = num1 * denominator2 + num2 * denominator1;
+      const sumDenominator = denominator1 * denominator2;
+
+      // Convert the result back to a mixed number
+      const sumWhole = Math.floor(sumNumerator / sumDenominator);
+      const sumNumeratorRemainder = sumNumerator % sumDenominator;
+
+      // Display the result
+      document.getElementById("result").textContent = `The sum is: ${sumWhole} ${sumNumeratorRemainder}/${sumDenominator}`;
+    }
+  </script>
+</body>
+</html>
