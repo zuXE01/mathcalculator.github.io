@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Algebra</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Lato", sans-serif;
+    }
+    .w3-bar, h1, button {
+      font-family: "Montserrat", sans-serif;
+    }
+    body {
+      text-align: center;
+      background-color: white;
+      margin: 0;
+    }
+    .container {
+      background-color: whitesmoke;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      width: 80%;
+    }
+    .container h5 {
+      font-weight: bold;
+    }
+    .container label {
+      display: block;
+      margin: 10px 0;
+    }
+    .container input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+    .container button {
+      padding: 10px 15px;
+      background-color: orange;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .container button:hover {
+      background-color: orangered;
+    }
+    #resultDot, #resultFifth, #resultFrac, #resultLoga {
+      margin-top: 10px;
+      font-size: large;
+    }
+  </style>
+</head>
+<body>
+
+<div class="w3-bar w3-red w3-card">
+  <a href="#dotProductCalculator" class="w3-bar-item w3-button w3-padding-large">Dot Product</a>
+  <a href="#fifthRootCalculator" class="w3-bar-item w3-button w3-padding-large">Fifth Root</a>
+  <a href="#fractionalExponentsCalculator" class="w3-bar-item w3-button w3-padding-large">Fractional Exponents</a>
+  <a href="#logarithmEquationCalculator" class="w3-bar-item w3-button w3-padding-large">Logarithmic Equations</a>
+</div>
+
+<!-- Dot Product Calculator -->
+<div class="container" id="dotProductCalculator">
+  <h5>Dot Product Calculator</h5>
+  <label>Vector 1 (comma-separated):</label>
+  <input type="text" id="vector1" placeholder="e.g., 1,2,3">
+  <label>Vector 2 (comma-separated):</label>
+  <input type="text" id="vector2" placeholder="e.g., 4,5,6">
+  <br>
+  <button onclick="calculateDotProduct()">Calculate Dot Product</button>
+  <p id="resultDot"></p>
+</div>
+
+<!-- Fifth Root Calculator -->
+<div class="container" id="fifthRootCalculator">
+  <h5>Fifth Root Calculator</h5>
+  <label>Enter a Number:</label>
+  <input type="number" id="fifthRootInput" placeholder="Enter a number">
+  <br>
+  <button onclick="calculateFifthRoot()">Calculate Fifth Root</button>
+  <p id="resultFifth"></p>
+</div>
+
+<!-- Fractional Exponents Calculator -->
+<div class="container" id="fractionalExponentsCalculator">
+  <h5>Fractional Exponents Calculator</h5>
+  <label>Base:</label>
+  <input type="number" id="base" placeholder="Base">
+  <label>Numerator:</label>
+  <input type="number" id="numerator" placeholder="Numerator">
+  <label>Denominator:</label>
+  <input type="number" id="denominator" placeholder="Denominator">
+  <br>
+  <button onclick="calculateFractionalExponent()">Calculate</button>
+  <p id="resultFrac"></p>
+</div>
+
+<!-- Logarithmic Equation Calculator -->
+<div class="container" id="logarithmEquationCalculator">
+  <h5>Logarithmic Equation Calculator</h5>
+  <label>Base:</label>
+  <input type="number" id="logBase" placeholder="Base">
+  <label>Value:</label>
+  <input type="number" id="logValue" placeholder="Value">
+  <br>
+  <button onclick="calculateLogarithm()">Calculate Logarithm</button>
+  <p id="resultLoga"></p>
+</div>
+
+<script>
+function calculateDotProduct() {
+  const vector1 = document.getElementById("vector1").value.split(',').map(Number);
+  const vector2 = document.getElementById("vector2").value.split(',').map(Number);
+  if (vector1.length !== vector2.length) {
+    document.getElementById("resultDot").innerText = "Vectors must be of the same length.";
+    return;
+  }
+  const result = vector1.reduce((sum, val, i) => sum + val * vector2[i], 0);
+  document.getElementById("resultDot").innerText = `Dot Product: ${result}`;
+}
+
+function calculateFifthRoot() {
+  const number = parseFloat(document.getElementById("fifthRootInput").value);
+  if (number < 0) {
+    document.getElementById("resultFifth").innerText = "Cannot compute the fifth root of a negative number.";
+    return;
+  }
+  const result = Math.pow(number, 1 / 5);
+  document.getElementById("resultFifth").innerText = `Fifth Root: ${result}`;
+}
+
+function calculateFractionalExponent() {
+  const base = parseFloat(document.getElementById("base").value);
+  const numerator = parseFloat(document.getElementById("numerator").value);
+  const denominator = parseFloat(document.getElementById("denominator").value);
+  if (denominator === 0) {
+    document.getElementById("resultFrac").innerText = "Denominator cannot be zero.";
+    return;
+  }
+  const result = Math.pow(base, numerator / denominator);
+  document.getElementById("resultFrac").innerText = `Result: ${result}`;
+}
+
+function calculateLogarithm() {
+  const base = parseFloat(document.getElementById("logBase").value);
+  const value = parseFloat(document.getElementById("logValue").value);
+  if (base <= 0 || base === 1 || value <= 0) {
+    document.getElementById("resultLoga").innerText = "Invalid input for base or value.";
+    return;
+  }
+  const result = Math.log(value) / Math.log(base);
+  document.getElementById("resultLoga").innerText = `Logarithm: ${result}`;
+}
+</script>
+
+</body>
+</html>
