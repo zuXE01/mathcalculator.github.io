@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exponent Calculator</title>
+</head>
+<body>
+  <input type="number" id="base" placeholder="Enter base">
+  <input type="number" id="exponent" placeholder="Enter exponent">
+  <button onclick="calculate()">Calculate</button>
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      const base = parseFloat(document.getElementById("base").value);
+      const exponent = parseFloat(document.getElementById("exponent").value);
+      const result = Math.pow(base, exponent);
+      document.getElementById("result").textContent = `${base} raised to the power of ${exponent} is: ${result}`;
+    }
+  </script>
+</body>
+</html>
