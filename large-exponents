@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Exponents Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.calculator {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+    word-wrap: break-word;
+}
+</style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Large Exponents Calculator</h1>
+        <input type="number" id="baseInput" placeholder="Enter the base number">
+        <input type="number" id="exponentInput" placeholder="Enter the exponent">
+        <button onclick="calculateExponent()">Calculate</button>
+        <button onclick="clearInputs()">Clear</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+<script>
+function calculateExponent() {
+    try {
+        const baseInput = document.getElementById('baseInput').value;
+        const exponentInput = document.getElementById('exponentInput').value;
+        const resultDiv = document.getElementById('result');
+
+        // Check if inputs are empty
+        if (baseInput === '' || exponentInput === '') {
+            throw new Error('Please enter both base and exponent values.');
+        }
+
+        // Convert inputs to numbers
+        const base = parseFloat(baseInput);
+        const exponent = parseFloat(exponentInput);
+
+        // Check if inputs are valid numbers
+        if (isNaN(base) || isNaN(exponent)) {
+            throw new Error('Invalid input. Please enter valid numeric values.');
+        }
+
+        // Calculate the result (use BigInt for handling very large numbers)
+        let result;
+        if (Number.isInteger(base) && Number.isInteger(exponent)) {
+            result = BigInt(base) ** BigInt(exponent);
+        } else {
+            result = Math.pow(base, exponent);
+        }
+
+        // Format the result with commas (for readability) if it's not a BigInt
+        const formattedValue = result.toLocaleString('fullwide', { useGrouping: true });
+        
+        resultDiv.innerHTML = `Result: ${formattedValue}`;
+    } catch (error) {
+        // Display the error message
+        document.getElementById('result').innerHTML = `Error: ${error.message}`;
+    }
+}
+
+function clearInputs() {
+    // Clear the input fields and the result
+    document.getElementById('baseInput').value = '';
+    document.getElementById('exponentInput').value = '';
+    document.getElementById('result').innerHTML = '';
+}
+</script>
+</body>
+</html>
