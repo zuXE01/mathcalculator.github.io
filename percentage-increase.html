@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Increase Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.calculator {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+}
+</style>
+<body>
+    <div class="calculator">
+        <h1>Percentage Increase Calculator</h1>
+        <input type="number" id="originalValue" placeholder="Enter the original value">
+        <input type="number" id="newValue" placeholder="Enter the new value">
+        <button onclick="calculatePercentageIncrease()">Calculate</button>
+        <button onclick="clearInputs()">Clear</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+<style>
+function calculatePercentageIncrease() {
+    try {
+        const originalValueInput = document.getElementById('originalValue').value;
+        const newValueInput = document.getElementById('newValue').value;
+        const resultDiv = document.getElementById('result');
+
+        // Check if inputs are empty
+        if (originalValueInput === '' || newValueInput === '') {
+            throw new Error('Please enter both the original and new values.');
+        }
+
+        // Convert inputs to numbers
+        const originalValue = parseFloat(originalValueInput);
+        const newValue = parseFloat(newValueInput);
+
+        // Check if inputs are valid numbers
+        if (isNaN(originalValue) || isNaN(newValue)) {
+            throw new Error('Invalid input. Please enter valid numeric values.');
+        }
+
+        // Ensure original value is not zero to avoid division by zero
+        if (originalValue === 0) {
+            throw new Error('The original value cannot be zero.');
+        }
+
+        // Calculate the percentage increase
+        const increase = newValue - originalValue;
+        const percentageIncrease = (increase / originalValue) * 100;
+
+        // Format the percentage with two decimal places
+        const formattedPercentage = percentageIncrease.toFixed(2);
+
+        resultDiv.innerHTML = `Percentage Increase: ${formattedPercentage}%`;
+    } catch (error) {
+        // Display the error message
+        document.getElementById('result').innerHTML = `Error: ${error.message}`;
+    }
+}
+
+function clearInputs() {
+    // Clear the input fields and the result
+    document.getElementById('originalValue').value = '';
+    document.getElementById('newValue').value = '';
+    document.getElementById('result').innerHTML = '';
+}
+</style>
+</body>
+</html>
