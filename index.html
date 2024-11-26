@@ -1,169 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Algebra</title>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator List</title>
+    <link rel="stylesheet" href="styles.css">
+    
     <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-anchor,.fa-coffee {font-size:200px}
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
 
-body {
-  font-family: sans-serif;
-}
-#calculator {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#result {
-  margin-top: 15px;
-  font-weight: bold;
-}
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .image-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            border-color: #4CAF50;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .calculator-list ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-list li {
+            background-color: white;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .calculator-list li:hover {
+            background-color: #4CAF50;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: white;
+            margin-top: 2rem;
+        }
     </style>
-  </head>
+</head>
 <body>
+    <header>
+        <h1>Calculator List</h1>
+    </header>
 
-<div class="w3-top">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="Mains.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="#link1" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 1</a>
-    <a href="#link2" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 2</a>
-    <a href="#link3" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 3</a>
-    <a href="#large-exponents" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a>
-  </div>
-
-
-    <a href="#link4" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a>
-  </div>
-
-
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#link1" class="w3-bar-item w3-button w3-padding-large">Percentage Change Calculator</a>
-    <a href="#link2" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-    <a href="#link3" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-    <a href="https://github.com/zuXE01/mathcalculator.github.io/blob/c44a04020033ea1df85c17268a7535d396dda70e/large-exponents" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
-  </div>
-</div>
-
-<header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">START PAGE</h1>
-  <p class="w3-xlarge">Template by w3.css</p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Start!</button>
-</header>
-
-<div class="w3-row-padding w3-padding-64 w3-container" id="link1" >
- <div id="calculator">
-  <h2>Percentage Change Calculator</h2>
-  <p>
-    (V²-V¹)/V¹ x 100
-  </p>
-  
-  <label for="originalValue">V¹:</label>
-  <input type="number" id="originalValue" placeholder="Enter original value">
-
-  <label for="newValue">V²:</label>
-  <input type="number" id="newValue" placeholder="Enter new value">
-
-  <button onclick="calculatePercentageChange()">Calculate</button>
-
-  <div id="result"></div>
-</div>
-
-<script>
-function calculatePercentageChange() {
-  const originalValue = parseFloat(document.getElementById("originalValue").value);
-  const newValue = parseFloat(document.getElementById("newValue").value);
-  const resultDiv = document.getElementById("result");
-
-
-  if (isNaN(originalValue) || isNaN(newValue)) {
-    resultDiv.textContent = "Please enter valid numbers.";
-    return; //Stop further execution
-  }
-    if (originalValue === 0) {
-      resultDiv.textContent = "The percentage change is undefined as the original value is zero.";
-    return; 
-  }
-
-
-  const percentageChange = ((newValue - originalValue) / originalValue) * 100;
-
-  resultDiv.textContent = "Percentage Change: " + percentageChange.toFixed(2) + "%";
-}
-</script>
-</div>
-
-
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-third w3-center">
+    <!-- Image container -->
+    <div class="image-container">
+        <img src="image1.jpg" alt="Profile 1">
+        <img src="image2.jpg" alt="Profile 2">
+        <img src="image3.jpg" alt="Profile 3">
+        <img src="image4.jpg" alt="Profile 4">
+        <img src="image5.jpg" alt="Profile 5">
+        <img src="image6.jpg" alt="Profile 6">
+        <img src="image7.jpg" alt="Profile 7">
     </div>
 
-    <div class="w3-twothird">
-        <section class="link3" id="link3" >
-      <p>Hatdog simulator </p>
-    </section>
-    </div>
-  </div>
-</div>
-
-<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <section class="link4" id="link4"></section>
-    <h1 class="w3-margin w3-xlarge">Kill Yourself!!</h1>
-</section>
-</div>
-
-
-<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
-  <h1>Pogi ako</h1>
- </footer>
-
-<script>
-
-function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-</script>
-
+    <main>
+        <section class="calculator-list">
+            <ul>
+                <li><a href="#" target="_blank">Absolute Difference Calculator</a></li>
+                <li><a href="#" target="_blank">Absolute Value Calculator</a></li>
+                <li><a href="#" target="_blank">Completing the Square Calculator</a></li>
+                <li><a href="#" target="_blank">Cubic Equation Calculator</a></li>
+                <li><a href="#" target="_blank">Cube Calculator x³ | x cubed</a></li>
+                <li><a href="#" target="_blank">Cube Root Calculator</a></li>
+                <li><a href="#" target="_blank">Difference of Two Squares Calculator</a></li>
+                <li><a href="#" target="_blank">Dot Product Calculator</a></li>
+                <li><a href="#" target="_blank">Exponents Calculator</a></li>
+                <li><a href="#" target="_blank">Large Exponents Calculator</a></li>
+                <li><a href="#" target="_blank">Fifth Root Calculator</a></li>
+                <li><a href="#" target="_blank">Fourth Root Calculator</a></li>
+                <li><a href="#" target="_blank">Fractional Exponents Calculator</a></li>
+                <li><a href="#" target="_blank">Logarithm Equation Calculator</a></li>
+                <li><a href="#" target="_blank">Percentage Change Calculator</a></li>
+                <li><a href="#" target="_blank">Percentage Increase Calculator</a></li>
+                <li><a href="#" target="_blank">Percentage Decrease Calculator</a></li>
+                <li><a href="#" target="_blank">Percentage Difference Calculator</a></li>
+                <li><a href="#" target="_blank">Percent Error Calculator</a></li>
+                <li><a href="#" target="_blank">Perfect Cubes - The First 100 Perfect Cubes</a></li>
+                <li><a href="#" target="_blank">Quadratic Formula Calculator</a></li>
+                <li><a href="#" target="_blank">Radicals or Root Calculator</a></li>
+                <li><a href="#" target="_blank">Simplify Radical Expressions Calculator</a></li>
+                <li><a href="#" target="_blank">Square Calculator x²</a></li>
+                <li><a href="#" target="_blank">Square Root Calculator</a></li>
+                <li><a href="#" target="_blank">Solve for Exponents Calculator</a></li>
+                <li><a href="#" target="_blank">Fractions Calculator</a></li>
+                <li><a href="#" target="_blank">Adding and Subtracting Fractions</a></li>
+                <li><a href="#" target="_blank">Mixed Numbers</a></li>
+                <li><a href="#" target="_blank">Simplifying Fractions</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Calculator List</p>
+    </footer>
 </body>
 </html>
