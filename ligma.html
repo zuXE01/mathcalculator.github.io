@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page title</title>
+  <style>
+body {
+  font-family: sans-serif;
+}
+#calculator, #container, #calculator1, #calculator2 {
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+#result {
+  margin-top: 10px;
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+
+
+<a href="index.html" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-family: sans-serif;">Home</a>
+
+
+
+
+<!-- Fraction Calculator -->
+<div id="calculator">
+  <h2>Fraction Calculator</h2>
+  <p>
+    This calculator performs basic arithmetic operations (addition, subtraction, multiplication, and division) on two fractions. 
+    Enter the numerator and denominator for each fraction, select the operation, and click **Calculate** to see the result in both fractional and decimal form.
+  </p>
+  <input type="number" id="num1"> / <input type="number" id="den1">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2"> / <input type="number" id="den2">
+  <br><br>
+  <button onclick="calculate()">Calculate</button>
+
+  <div id="resultskibidi1"></div>
+</div>
+
+<script>
+function calculate() {
+  const num1 = parseInt(document.getElementById("num1").value);
+  const den1 = parseInt(document.getElementById("den1").value);
+  const num2 = parseInt(document.getElementById("num2").value);
+  const den2 = parseInt(document.getElementById("den2").value);
+  const operator = document.getElementById("operator").value;
+
+  let resultNum, resultDen;
+
+  switch (operator) {
+    case "+":
+      resultNum = num1 * den2 + num2 * den1;
+      resultDen = den1 * den2;
+      break;
+    case "-":
+      resultNum = num1 * den2 - num2 * den1;
+      resultDen = den1 * den2;
+      break;
+    case "*":
+      resultNum = num1 * num2;
+      resultDen = den1 * den2;
+      break;
+    case "/":
+      resultNum = num1 * den2;
+      resultDen = den1 * num2;
+      break;
+  }
+
+  const gcd = (a, b) => {
+    if (!b) return a;
+    return gcd(b, a % b);
+  };
+
+  const commonDivisor = gcd(Math.abs(resultNum), Math.abs(resultDen));
+  resultNum /= commonDivisor;
+  resultDen /= commonDivisor;
+
+  document.getElementById("resultskibidi1").textContent = 
+    resultNum + "/" + resultDen + " = " + (resultNum / resultDen).toFixed(3);
+}
+</script>
+
+<!-- Square Calculator -->
+<div id="container">
+  <h2>Square Calculator</h2>
+  <h1>X²</h1>
+  <p>
+    This calculator computes the square of any number you enter. Squaring a number means multiplying it by itself. 
+    Simply input the number and click **Calculate Square** to get the result.
+  </p>
+  <label for="number">Enter a number:</label>
+  <input type="number" id="number" name="number">
+  <button onclick="calculateSquare()">Calculate Square</button>
+  <div id="resultskibidi2"></div>
+</div>
+
+<script>
+function calculateSquare() {
+  const num = document.getElementById("number").value;
+  const square = num * num;
+  document.getElementById("resultskibidi2").innerHTML = "The square of " + num + " is: " + square;
+}
+</script>
+
+<!-- Percentage Change Calculator -->
+<div id="calculator1">
+  <h2>Percentage Change Calculator</h2>
+  <p>
+    This calculator determines the percentage change from an original value (**V¹**) to a new value (**V²**). 
+    The formula used is:  
+    **(V² - V¹) / V¹ × 100**
+    Enter the original and new values to calculate the percentage increase or decrease.
+  </p>
+  <label for="originalValue">V¹:</label>
+  <input type="number" id="originalValue" placeholder="Enter original value">
+
+  <label for="newValue">V²:</label>
+  <input type="number" id="newValue" placeholder="Enter new value">
+
+  <button onclick="calculatePercentageChange()">Calculate</button>
+  <div id="resultskibidi3"></div>
+</div>
+
+<script>
+function calculatePercentageChange() {
+  const originalValue = parseFloat(document.getElementById("originalValue").value);
+  const newValue = parseFloat(document.getElementById("newValue").value);
+  const resultDiv = document.getElementById("resultskibidi3");
+
+  if (isNaN(originalValue) || isNaN(newValue)) {
+    resultDiv.textContent = "Please enter valid numbers.";
+    return; 
+  }
+  if (originalValue === 0) {
+    resultDiv.textContent = "The percentage change is undefined as the original value is zero.";
+    return; 
+  }
+
+  const percentageChange = ((newValue - originalValue) / originalValue) * 100;
+
+  resultDiv.textContent = "Percentage Change: " + percentageChange.toFixed(2) + "%";
+}
+</script>
+
+<!-- Cube Calculator -->
+<div id="calculator2">
+  <h2>Perfect Cubes - The First 100 Perfect Cubes</h2>
+  <p>
+    A cube of a number is the result of multiplying the number by itself three times. 
+    This calculator computes the cube of any number you enter. Input a number and click **Calculate Cube** to get the result.
+  </p>
+  <input type="number" id="cubeNumber" placeholder="Enter a number">
+  <button onclick="calculateCube()">Calculate Cube</button>
+  <div id="resultskibidi4"></div>
+</div>
+
+<script>
+function calculateCube() {
+  var number = parseFloat(document.getElementById("cubeNumber").value);
+
+  if (isNaN(number)) {
+    document.getElementById("resultskibidi4").textContent = "Invalid input. Please enter a valid number.";
+    return;
+  }
+
+  var cube = number * number * number;
+  document.getElementById("resultskibidi4").textContent = "The cube of " + number + " is: " + cube;
+}
+</script>
+
+</body>
+</html>
+ 
