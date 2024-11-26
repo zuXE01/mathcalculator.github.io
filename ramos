@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Algebra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+
+    body {
+      font-family: sans-serif;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: White;
+      margin: 1;
+      text-align: center;
+    }
+
+    .container {
+      background-color: whitesmoke;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%;
+
+      h1 {
+        font-weight: bolder;
+      }
+
+      h5 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+      }
+
+      label {
+        width: 100%;
+        padding: 10px;
+        margin: 10px;
+        border: 0px solid black;
+        border-radius: 5px;
+        font-size: large;
+        
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: large;
+      }
+
+      button {
+        padding: 10px 15px;
+        background-color: orange;
+        color: black;
+        border: 1px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: large;
+      }
+
+      button:hover{
+        background-color: orangered;
+      }
+
+      #result {
+        margin-top: 10px;
+        font-size: large;
+        color: black;
+      }
+    }
+
+    </style>
+  </head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="Mains.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="#fourthRoot" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Fourth Root Calculator</a>
+    <a href="#percentError" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Percent Error Calculator</a>
+    <a href="#quadratic" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Quadratic Formula Calculator</a>
+    <a href="#radicals" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Radicals Calculator</a>
+  </div>
+
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#fourthRoot" class="w3-bar-item w3-button w3-padding-large">Fourth Root Calculator</a>
+    <a href="#percentError" class="w3-bar-item w3-button w3-padding-large">Percent Error Calculator</a>
+    <a href="#quadratic" class="w3-bar-item w3-button w3-padding-large">Quadratic Formula Calculator</a>
+    <a href="#radicals" class="w3-bar-item w3-button w3-padding-large">Radicals Calculator</a>
+  </div>
+</div>
+
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">START PAGE</h1>
+  <p class="w3-xlarge">Template by w3.css</p>
+  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Start!</button>
+</header>
+
+<div class="w3-row-padding w3-padding-64 w3-container" id="fourthRoot" >
+  <div class="w3-content">
+        <section class="fourthRoot" id="fourthRoot" >
+      <h5 class="">Fourth Root Calculator</h5>
+
+      <p class="w3-text-grey">
+        4√
+        
+        <br>
+        <br>
+
+        The fourth root of a number is the number, which when multiplied four times by itself the original number will be obtained. In other words, 4th root of a number is equal to the square root of square root of the number. Also, the fourth root is denoted symbolically by multiplying the radical with 4.
+      </p>
+    </section>
+    </div>
+    
+    <div class="container">
+      <label for="number">Enter a number:</label>
+    <input type="number" id="number" placeholder="Enter a number" required>
+    <button onclick="calculateFourthRoot()">Calculate Fourth Root</button>
+    
+
+    <p id="result"></p>
+
+    </div>
+    <script>
+        function calculateFourthRoot() {
+            // Get the input value
+            const number = parseFloat(document.getElementById("number").value);
+            
+            // Check if the input is a valid number
+            if (isNaN(number)) {
+                document.getElementById("result").innerText = "Please enter a valid number.";
+                return;
+            }
+            
+            // Calculate the fourth root using Math.pow()
+            const fourthRoot = Math.pow(number, 1/4);
+            
+            // Display the result
+            document.getElementById("result").innerText = "The fourth root of " + number + " is " + fourthRoot.toFixed(4);
+        }
+
+    </script>
+
+  <div class="w3-content">
+        <section class="percentError" id="percentError" >
+      <h5 class="">Percent Error Calculator</h5>
+
+      <p class="w3-text-grey">
+        Percentage error =	
+        [(Observed Value – True Value) /
+        True Value]
+        × 100%
+        
+        <br>
+        <br>
+
+        Percentage error is a measurement of the discrepancy between an observed (measured) and a true (expected, accepted, known etc.) value. It is typically used to compare measured vs. known values as well as to assess whether the measurements taken are valid.
+      </p>
+    </section>
+    </div>
+
+    <div class="container">
+      <label for="measuredValue">Enter Observed Value:</label>
+      <input type="number" id="observedValue" placeholder="Observed Value" required>
+      
+      <label for="trueValue">Enter True Value:</label>
+      <input type="number" id="trueValue" placeholder="True Value" required>
+      <br><br>
+      
+      <button onclick="calculatePercentError()">Calculate Percent Error</button>
+  
+      <p id="resultError"></p>
+  
+      <script>
+          function calculatePercentError() {
+              // Get the input values
+              const observedValue = parseFloat(document.getElementById("observedValue").value);
+              const trueValue = parseFloat(document.getElementById("trueValue").value);
+  
+              // Check if the inputs are valid numbers
+              if (isNaN(observedValue) || isNaN(trueValue)) {
+                  document.getElementById("resultError").innerText = "Please enter valid numbers.";
+                  return;
+              }
+  
+              // Calculate percent error
+              const percentError = (Math.abs(observedValue - trueValue) / trueValue) * 100;
+              
+              // Display the result
+              document.getElementById("resultError").innerText = `Percent Error: ${percentError.toFixed(2)}%`;
+          }
+      </script>
+    </div>
+
+
+  <div class="w3-content">
+        <section class="quadratic" id="quadratic" >
+      <h5 class="">Quadratic Formula Calculator</h5>
+
+      <p class="w3-text-grey">
+        x = [-b ± √(b 2 − 4ac)] / 2a
+
+        <br>
+        <br>
+        
+        A formula that gives the solutions of the general quadratic equation ax 2 + bx + c = 0.
+      </p>
+    </section>
+    </div>
+
+    <div class="container">
+    <label for="a">Enter value for a:</label>
+    <input type="number" id="a" placeholder="a" required>
+    <br>
+    
+    <label for="b">Enter value for b:</label>
+    <input type="number" id="b" placeholder="b" required>
+    <br>
+    
+    <label for="c">Enter value for c:</label>
+    <input type="number" id="c" placeholder="c" required>
+    <br>
+    
+    <button onclick="solveQuadratic()">Solve</button>
+
+    <p id="resultQuad"></p>
+
+    <script>
+        function solveQuadratic() {
+            // Get the values of a, b, and c
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+
+            // Check if the inputs are valid numbers
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById("resultQuad").innerText = "Please enter valid numbers for a, b, and c.";
+                return;
+            }
+
+            // Calculate the discriminant
+            const discriminant = b * b - 4 * a * c;
+
+            // Calculate the two roots based on the discriminant
+            if (discriminant > 0) {
+                // Two real roots
+                const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                document.getElementById("resultQuad").innerText = `The roots are real and distinct: x1 = ${root1.toFixed(4)}, x2 = ${root2.toFixed(4)}`;
+            } else if (discriminant === 0) {
+                // One real root
+                const root = -b / (2 * a);
+                document.getElementById("resultQuad").innerText = `The root is real and repeated: x = ${root.toFixed(4)}`;
+            } else {
+                // Complex roots
+                const realPart = -b / (2 * a);
+                const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+                document.getElementById("resultQuad").innerText = `The roots are complex: x1 = ${realPart.toFixed(4)} + ${imaginaryPart.toFixed(4)}i, x2 = ${realPart.toFixed(4)} - ${imaginaryPart.toFixed(4)}i`;
+            }
+        }
+    </script>
+    </div> 
+
+    <div class="w3-content">
+          <section class="radicals" id="radicals" >
+        <h5 class="">Radicals Calculator</h5>
+  
+        <p class="w3-text-grey">
+          n√x = p
+  
+          <br>
+          <br>
+          
+          The radical of a number is the same as the root of a number. The root can be a square root, cube root, or in general, nth root. Thus, any number or expression that uses a root is known as a radical. The number written before the radical is known as the index number or degree. This number helps in telling us how many times the number would be multiplied by itself to equal the radicand.
+        </p>
+      </section>
+      </div>
+
+  <div class="container">
+    <label for="number">Enter the number (x):</label>
+    <input type="number" id="number" placeholder="Number" required>
+    <br><br>
+
+    <label for="root">Enter the root (n):</label>
+    <input type="number" id="root" placeholder="Root" required>
+    <br><br>
+
+    <button onclick="calculateRadical()">Calculate Radical</button>
+
+    <p id="resultRad"></p>
+
+    <script>
+        function calculateRadical() {
+            // Get the values for the number (x) and root (n)
+            const number = parseFloat(document.getElementById("number").value);
+            const root = parseInt(document.getElementById("root").value);
+
+            // Check if the inputs are valid
+            if (isNaN(number) || isNaN(root) || root <= 0) {
+                document.getElementById("resultRad").innerText = "Please enter valid numbers for both the number and the root (root must be a positive integer).";
+                return;
+            }
+
+            // Handle cases for negative number with even roots (e.g., square root of negative number is not real)
+            if (number < 0 && root % 2 === 0) {
+                document.getElementById("resultRad").innerText = "Cannot calculate an even root of a negative number in real numbers.";
+                return;
+            }
+
+            // Calculate the nth root (radical) using Math.pow() or the exponentiation operator
+            const radical = Math.pow(number, 1 / root);  // nth root formula: x^(1/n)
+
+            // Display the result
+            document.getElementById("resultRad").innerText = `The ${root}th root of ${number} is ${radical.toFixed(4)}`;
+        }
+    </script>
+  </div>
+
+</body>
+</html>
