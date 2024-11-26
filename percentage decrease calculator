@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Percentage Decrease Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input type="number" id="originalValue" placeholder="Enter original value">
+  <input type="number" id="newValue" placeholder="Enter new value">
+  <button onclick="calculatePercentageDecrease()">Calculate Percentage Decrease</button>
+  <p id="result"></p>
+
+  <script>
+    function calculatePercentageDecrease() {
+      const originalValue = parseFloat(document.getElementById("originalValue").value);
+      const newValue = parseFloat(document.getElementById("newValue").value);
+
+      if (originalValue <= 0 || newValue <= 0) {
+        alert("Please enter positive values for both original and new values.");
+        return;
+      }
+
+      const decrease = originalValue - newValue;
+      const percentageDecrease = (decrease / originalValue) * 100;
+
+      document.getElementById("result").textContent = `The percentage decrease is: ${percentageDecrease.toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
