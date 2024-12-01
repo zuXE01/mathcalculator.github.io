@@ -159,32 +159,32 @@
     document.getElementById("resultError").innerText = `Percent Error: ${error.toFixed(2)}%`;
   }
 
- // Function to solve quadratic equation
-function solveQuadratic(a, b, c) {
+ // Function to calculate roots using the quadratic formula
+function quadraticFormula(a, b, c) {
     if (a === 0) {
-        if (b === 0) {
-            return c === 0 ? "Infinite solutions" : "No solution";
-        } else {
-            return `Linear solution: x = ${-c / b}`;
-        }
+        return b !== 0
+            ? `Linear equation solution: x = ${-c / b}`
+            : c === 0
+            ? "Infinite solutions"
+            : "No solution";
     }
 
-    const discriminant = b * b - 4 * a * c;
+    const discriminant = b * b - 4 * a * c; // Calculate the discriminant
 
     if (discriminant > 0) {
         const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
         const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-        return `Real and distinct roots: x1 = ${root1}, x2 = ${root2}`;
+        return `The roots are real and distinct: x1 = ${root1}, x2 = ${root2}`;
     } else if (discriminant === 0) {
         const root = -b / (2 * a);
-        return `Real and repeated root: x = ${root}`;
+        return `The root is real and repeated: x = ${root}`;
     } else {
         const realPart = -b / (2 * a);
         const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
-        return `Complex roots: x1 = ${realPart} + ${imaginaryPart}i, x2 = ${realPart} - ${imaginaryPart}i`;
+        return `The roots are complex: x1 = ${realPart} + ${imaginaryPart}i, x2 = ${realPart} - ${imaginaryPart}i`;
     }
+  console.log(quadraticFormula(a, b, c));
 }
-console.log(solveQuadratic(a, b, c));
 
   function calculateRadical() {
     const x = parseFloat(document.getElementById("radicalNumber").value);
