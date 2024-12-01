@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify Radical Expressions Calculator</title>
+    <h3>How to simplify radical expressions?</h3>
+    <p>To simplify a radical expression, first find the prime factorization of the number under the square root. Group the factors into pairs, as each pair of identical factors can be taken outside the square root. For example, to simplify 
+        72
+        72
+        ​
+         , factor it as 
+        72
+        =
+        2
+        ×
+        2
+        ×
+        2
+        ×
+        3
+        ×
+        3
+        72=2×2×2×3×3, then take the pairs 
+        2
+        ×
+        2
+        2×2 and 
+        3
+        ×
+        3
+        3×3 out, resulting in 
+        6
+        2
+        6 
+        2
+        ​
+         . The simplified expression has the product of the factors taken out and the remaining factors inside the radical.</p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simplify Radical Expressions Calculator</h1>
+    <p>Enter a number to simplify its square root:</p>
+    
+    <label for="radical">Number:</label>
+    <input type="number" id="radical" placeholder="Enter a number" />
+    <button onclick="simplifyRadical()">Simplify</button>
+
+    <h2>Result:</h2>
+    <p id="result">Simplified radical will appear here.</p>
+
+    <script>
+        function simplifyRadical() {
+            // Get input value
+            const number = parseInt(document.getElementById("radical").value);
+
+            // Validate input
+            if (isNaN(number) || number <= 0) {
+                document.getElementById("result").textContent = "Please enter a valid positive number.";
+                return;
+            }
+
+            // Simplify radical
+            let outside = 1; // Coefficient outside the radical
+            let inside = number; // Remaining number inside the radical
+
+            for (let i = 2; i * i <= inside; i++) {
+                while (inside % (i * i) === 0) {
+                    outside *= i;
+                    inside /= (i * i);
+                }
+            }
+
+            // Generate result
+            if (inside === 1) {
+                document.getElementById("result").textContent = `√${number} = ${outside}`;
+            } else {
+                document.getElementById("result").textContent = `√${number} = ${outside}√${inside}`;
+            }
+        }
+    </script>
+</body>
+</html>
