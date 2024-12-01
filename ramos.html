@@ -159,32 +159,26 @@
     document.getElementById("resultError").innerText = `Percent Error: ${error.toFixed(2)}%`;
   }
 
- // Function to calculate roots using the quadratic formula
-function quadraticFormula(a, b, c) {
-    if (a === 0) {
-        return b !== 0
-            ? `Linear equation solution: x = ${-c / b}`
-            : c === 0
-            ? "Infinite solutions"
-            : "No solution";
+   function solveQuadratic() {
+    const a = parseFloat(document.getElementById("a").value);
+    const b = parseFloat(document.getElementById("b").value);
+    const c = parseFloat(document.getElementById("c").value);
+    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+      document.getElementById("resultQuad").innerText = "Invalid input.";
+      return;
     }
-
-    const discriminant = b * b - 4 * a * c; // Calculate the discriminant
-
+    const discriminant = b * b - 4 * a * c;
     if (discriminant > 0) {
-        const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-        const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-        return `The roots are real and distinct: x1 = ${root1}, x2 = ${root2}`;
+      const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+      const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+      document.getElementById("resultQuad").innerText = `Roots are ${root1.toFixed(2)} and ${root2.toFixed(2)}`;
     } else if (discriminant === 0) {
-        const root = -b / (2 * a);
-        return `The root is real and repeated: x = ${root}`;
+      const root = -b / (2 * a);
+      document.getElementById("resultQuad").innerText = `Root is ${root.toFixed(2)}`;
     } else {
-        const realPart = -b / (2 * a);
-        const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
-        return `The roots are complex: x1 = ${realPart} + ${imaginaryPart}i, x2 = ${realPart} - ${imaginaryPart}i`;
+      document.getElementById("resultQuad").innerText = "No Real Roots.";
     }
-  console.log(quadraticFormula(a, b, c));
-}
+  }
 
   function calculateRadical() {
     const x = parseFloat(document.getElementById("radicalNumber").value);
