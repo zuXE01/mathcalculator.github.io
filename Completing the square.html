@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completing the Square Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Completing the Square Calculator</h1>
+    <p>Enter the coefficients of the quadratic equation \(ax^2 + bx + c = 0\):</p>
+
+    <label for="a">a:</label>
+    <input type="number" id="a" placeholder="Enter a" />
+    <br>
+    <label for="b">b:</label>
+    <input type="number" id="b" placeholder="Enter b" />
+    <br>
+    <label for="c">c:</label>
+    <input type="number" id="c" placeholder="Enter c" />
+    <br>
+    <button onclick="completeSquare()">Complete the Square</button>
+
+    <h2>Result:</h2>
+    <p id="result">The completed square form will appear here.</p>
+
+    <script>
+        function completeSquare() {
+            // Get values from input fields
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+
+            // Validate inputs
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById("result").textContent = "Please enter valid numbers for a, b, and c.";
+                return;
+            }
+
+            // Completing the square for ax^2 + bx + c = 0
+            // Step 1: Divide through by 'a' if a ≠ 1
+            const factor = a === 1 ? 1 : a;
+            const bOver2a = b / (2 * factor);
+            const completedSquare = bOver2a * bOver2a - c / a;
+
+            // Step 2: Rewrite in completed square form
+            const completedForm = `${factor}(x + ${b / (2 * a)})² = ${completedSquare}`;
+
+            // Step 3: Display result
+            document.getElementById("result").textContent = "The completed square form is: " + completedForm;
+        }
+    </script>
+</body>
+</html>
