@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Difference of Two Squares Calculator</title>
+    <h3>How to solve Difference of Two Squares Calculator</h3>
+    <p>The difference of two squares, 
+        𝑎
+        2
+        −
+        𝑏
+        2
+        a 
+        2
+         −b 
+        2
+         , factors as 
+        (
+        𝑎
+        +
+        𝑏
+        )
+        (
+        𝑎
+        −
+        𝑏
+        )
+        (a+b)(a−b). To solve, identify the squares, rewrite the expression, and apply the formula. For example, 
+        9
+        𝑥
+        2
+        −
+        16
+        =
+        (
+        3
+        𝑥
+        )
+        2
+        −
+        4
+        2
+        =
+        (
+        3
+        𝑥
+        +
+        4
+        )
+        (
+        3
+        𝑥
+        −
+        4
+        )
+        9x 
+        2
+         −16=(3x) 
+        2
+         −4 
+        2
+         =(3x+4)(3x−4). Repeat for higher powers if needed, such as 
+        𝑥
+        4
+        −
+        1
+        =
+        (
+        𝑥
+        2
+        +
+        1
+        )
+        (
+        𝑥
+        +
+        1
+        )
+        (
+        𝑥
+        −
+        1
+        )
+        x 
+        4
+         −1=(x 
+        2
+         +1)(x+1)(x−1).</p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Difference of Two Squares Calculator</h1>
+    <p>Enter two numbers \(a\) and \(b\):</p>
+    
+    <label for="a">a:</label>
+    <input type="number" id="a" placeholder="Enter a" />
+    <br>
+    <label for="b">b:</label>
+    <input type="number" id="b" placeholder="Enter b" />
+    <br>
+    <button onclick="calculate()">Calculate</button>
+
+    <h2>Result:</h2>
+    <p id="result">(a² - b²) = (a + b)(a - b)</p>
+
+    <script>
+        function calculate() {
+            // Get values from inputs
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+
+            // Validate input
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById("result").textContent = "Please enter valid numbers for a and b.";
+                return;
+            }
+
+            // Calculate difference of squares
+            const difference = a ** 2 - b ** 2;
+            const sum = a + b;
+            const diff = a - b;
+
+            // Display results
+            document.getElementById("result").textContent = `(a² - b²) = ${difference}, which is (${a} + ${b})(${a} - ${b}) = (${sum})(${diff})`;
+        }
+    </script>
+</body>
+</html>
