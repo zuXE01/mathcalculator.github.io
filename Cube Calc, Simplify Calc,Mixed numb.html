@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Algebra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Lato", sans-serif;
+        }
+        .w3-bar, h1, button {
+            font-family: "Montserrat", sans-serif;
+        }
+        .fa-anchor, .fa-coffee {
+            font-size: 200px;
+        }
+        .calculator-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .calculator-container input,
+        .calculator-container button {
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .calculator-container #result,
+        .calculator-container .result-area {
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .step {
+            background-color: #e9e9e9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a href="Link1.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        <a href="#link1" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Cube Calculator</a>
+        <a href="#link2" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Simplify Fractions</a>
+        <a href="#link3" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Mixed Numbers</a>
+    </div>
+</div>
+
+<div class="w3-container" id="link1">
+    <div class="calculator-container">
+        <h1>Cube Calculator</h1>
+        <div>
+            <label for="cubeInput">Enter a number to cube:</label>
+            <input type="number" id="cubeInput" placeholder="Enter a number">
+            <button onclick="calculateCube()">Calculate Cube</button>
+        </div>
+        <div id="cubeResult" class="result-area"></div>
+    </div>
+</div>
+
+<div class="w3-container" id="link2">
+    <div class="calculator-container">
+        <h1>Simplify Fractions Calculator</h1>
+        <div>
+            <label for="numerator1">Numerator:</label>
+            <input type="number" id="numerator1" placeholder="Enter numerator">
+        </div>
+        <div>
+            <label for="denominator1">Denominator:</label>
+            <input type="number" id="denominator1" placeholder="Enter denominator">
+        </div>
+        <button onclick="simplifyFraction('numerator1', 'denominator1', 'fractionResult')">Simplify Fraction</button>
+        <div id="fractionResult" class="result-area"></div>
+    </div>
+</div>
+
+<div class="w3-container" id="link3">
+    <div class="calculator-container">
+        <h1>Mixed Numbers Calculator</h1>
+        <div>
+            <label for="numerator2">Numerator:</label>
+            <input type="number" id="numerator2" placeholder="Enter numerator">
+        </div>
+        <div>
+            <label for="denominator2">Denominator:</label>
+            <input type="number" id="denominator2" placeholder="Enter denominator">
+        </div>
+        <button onclick="convertToMixedNumber()">Convert to Mixed Number</button>
+        <div id="mixedNumberResult" class="result-area"></div>
+    </div>
+</div>
+
+<script>
+    // Cube Calculator Function
+    function calculateCube() {
+        const input = document.getElementById('cubeInput').value;
+        const number = parseFloat(input);
+        const resultDiv = document.getElementById('cubeResult');
+
+        if (isNaN(number)) {
+            resultDiv.textContent = 'Please enter a valid number';
+            return;
+        }
+
+        const cube = Math.pow(number, 3);
+        resultDiv.textContent = `Cube of ${number}: ${cube}`;
+    }
+
+    // Simplify Fraction Function
+    function gcd(a, b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        while (b !== 0) {
+            const temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    function simplifyFraction(numeratorId, denominatorId, resultId) {
+        const numerator = parseInt(document.getElementById(numeratorId).value);
+        const denominator = parseInt(document.getElementById(denominatorId).value);
+        const resultDiv = document.getElementById(resultId);
+
+        if (isNaN(numerator) || isNaN(denominator)) {
+            resultDiv.textContent = 'Please enter valid numbers';
+            return;
+        }
+
+        if (denominator === 0) {
+            resultDiv.textContent = 'Denominator cannot be zero';
+            return;
+        }
+
+        const sign = numerator * denominator < 0 ? '-' : '';
+        const absNumerator = Math.abs(numerator);
+        const absDenominator = Math.abs(denominator);
+
+        const divisor = gcd(absNumerator, absDenominator);
+        const simplifiedNumerator = absNumerator / divisor;
+        const simplifiedDenominator = absDenominator / divisor;
+
+        resultDiv.textContent =
+            simplifiedDenominator === 1
+                ? `Simplified Fraction: ${sign}${simplifiedNumerator}`
+                : `Simplified Fraction: ${sign}${simplifiedNumerator}/${simplifiedDenominator}`;
+    }
+
+    // Mixed Numbers Function
+    function convertToMixedNumber() {
+        const numerator = parseInt(document.getElementById('numerator2').value);
+        const denominator = parseInt(document.getElementById('denominator2').value);
+        const resultDiv = document.getElementById('mixedNumberResult');
+
+        if (isNaN(numerator) || isNaN(denominator)) {
+            resultDiv.textContent = 'Please enter valid numbers';
+            return;
+        }
+
+        if (denominator === 0) {
+            resultDiv.textContent = 'Denominator cannot be zero';
+            return;
+        }
+
+        const sign = numerator * denominator < 0 ? '-' : '';
+        const absNumerator = Math.abs(numerator);
+        const absDenominator = Math.abs(denominator);
+
+        const wholeNumber = Math.floor(absNumerator / absDenominator);
+        const remainder = absNumerator % absDenominator;
+
+        resultDiv.textContent =
+            remainder === 0
+                ? `${sign}${wholeNumber}`
+                : `${sign}${wholeNumber} ${remainder}/${absDenominator}`;
+    }
+</script>
+</body>
+</html>
