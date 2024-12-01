@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exponent Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exponent Calculator</h1>
+    <label for="base">Base:</label>
+    <input type="number" id="base" placeholder="Enter base">
+    <label for="exponent">Exponent:</label>
+    <input type="number" id="exponent" placeholder="Enter exponent">
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculate() {
+            // Get the values from the input fields
+            const base = parseFloat(document.getElementById("base").value);
+            const exponent = parseFloat(document.getElementById("exponent").value);
+
+            // Calculate the result 1  using Math.pow()
+            const result = Math.pow(base, exponent);
+
+            // Display the result in the paragraph
+            document.getElementById("result").textContent = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>
