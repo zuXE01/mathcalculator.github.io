@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraction Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .calculator {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 40%;
+      padding: 5px;
+      margin: 0 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .operations button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .operations button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .result p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Fraction Calculator</h1>
+    <div class="input-group">
+      <label>Fraction 1:</label>
+      <input type="number" id="numerator1" placeholder="Numerator">
+      <span>/</span>
+      <input type="number" id="denominator1" placeholder="Denominator">
+    </div>
+    <div class="input-group">
+      <label>Fraction 2:</label>
+      <input type="number" id="numerator2" placeholder="Numerator">
+      <span>/</span>
+      <input type="number" id="denominator2" placeholder="Denominator">
+    </div>
+    <div class="operations">
+      <button onclick="calculate('add')">Add</button>
+      <button onclick="calculate('subtract')">Subtract</button>
+    </div>
+    <div class="result">
+      <h2>Result:</h2>
+      <p id="result">-</p>
+    </div>
+  </div>
+
+  <script>
+    function calculate(operation) {
+      const numerator1 = parseInt(document.getElementById('numerator1').value);
+      const denominator1 = parseInt(document.getElementById('denominator1').value);
+      const numerator2 = parseInt(document.getElementById('numerator2').value);
+      const denominator2 = parseInt(document.getElementById('denominator2').value);
+
+      if (!denominator1 || !denominator2) {
+        document.getElementById('result').textContent = "Denominators cannot be zero!";
+        return;
+      }
+
+      let resultNumerator, resultDenominator;
+
+      if (operation === 'add') {
+        resultNumerator = numerator1 * denominator2 + numerator2 * denominator1;
+        resultDenominator = denominator1 * denominator2;
+      } else if (operation === 'subtract') {
+        resultNumerator = numerator1 * denominator2 - numerator2 * denominator1;
+        resultDenominator = denominator1 * denominator2;
+      }
+
+      const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+      const commonDivisor = gcd(resultNumerator, resultDenominator);
+
+      resultNumerator /= commonDivisor;
+      resultDenominator /= commonDivisor;
+
+      document.getElementById('result').textContent = `${resultNumerator}/${resultDenominator}`;
+    }
+  </script>
+</body>
+</html>
